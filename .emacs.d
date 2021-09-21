@@ -1,0 +1,1 @@
+/home/haakon/.emacs.d
