@@ -1,4 +1,4 @@
-# configs
+# Configs
 
 Just because I have configs for various things doesn't mean I know what I'm doing
 
