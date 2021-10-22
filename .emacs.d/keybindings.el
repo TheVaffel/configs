@@ -1,4 +1,4 @@
-
+(load-file "~/.emacs.d/utils.el")
 
 ; Custom key bindings
 
@@ -19,10 +19,13 @@
 		  (next-line 10)))
 	    ("M-," . next-buffer)
 	    ("M-'" . previous-buffer)
-	    ("M-h" . backward-kill-word)
+	    ("M-h" . custom-backward-delete-word)
+            ("M-d" . custom-delete-word)
 	    ("C-h" . delete-backward-char)
 	    ("C-j" . forward-char)
-	    ("M-j" . forward-word))
+	    ("M-j" . forward-word)
+            ("C-f" . hcon-toggle-fullscreen)
+            ("S-C-s" . project-find-file)) ;; Project-wide file finding
 
 
 (global-set-key (kbd "C-q") (lookup-key global-map (kbd "C-x")))
