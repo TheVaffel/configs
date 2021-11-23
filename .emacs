@@ -12,6 +12,7 @@
 (load-file "~/.emacs.d/cplusplus.el")
 (load-file "~/.emacs.d/typescript.el")
 (load-file "~/.emacs.d/csharp.el")
+(load-file "~/.emacs.d/glsl.el")
 
 ;; Call again to re-override bindings from different modes
 (load-file "~/.emacs.d/keybindings.el")
