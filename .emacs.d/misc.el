@@ -22,3 +22,5 @@
 ;; Prevent automatic splitting of windows
 (setq split-height-threshold nil
       split-width-threshold nil)
+
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
