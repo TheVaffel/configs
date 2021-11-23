@@ -11,5 +11,7 @@
 (load-file "~/.emacs.d/cplusplus.el")
 (load-file "~/.emacs.d/typescript.el")
 
+(load-file "~/.emacs.d/arduino-mode.el")
+
 ;; Call again to re-override bindings from different modes
 (load-file "~/.emacs.d/keybindings.el")
