@@ -10,12 +10,17 @@
   ;; `M-x package-install [ret] company`
   (company-mode +1)
   (bind-keys* ("M-p" . tide-references))
+  (bind-keys* ("M-r" . tide-rename-symbol))
+  (bind-keys* ("M-f" . tide-rename-file))
   (setq-default typescript-indent-level 2)
-  (setq tide-server-max-response-length 1024000)
+  (setq tide-server-max-response-length 102400000)
   ;; aligns annotation to the right hand side
   (setq company-tooltip-align-annotations t)
   (setq auto-save-default nil)
-  (setq create-lockfiles nil))
+  (setq create-lockfiles nil)
+  ;; (load-file "~/.emacs.d/eslint-fix.el")
+  ;; (add-hook 'after-save-hook 'eslint-fix nil t)
+  )
 
 ;; formats the buffer before saving
 ;; (add-hook 'before-save-hook 'tide-format-before-save)
@@ -30,3 +35,5 @@
               (setup-tide-mode))))
 
 (add-hook 'typescript-mode-hook #'setup-tide-mode)
+
+(setq js-indent-level 2)
