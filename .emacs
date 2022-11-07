@@ -14,6 +14,7 @@
 (load-file "~/.emacs.d/csharp.el")
 (load-file "~/.emacs.d/glsl.el")
 (load-file "~/.emacs.d/wgsl-mode.el")
+(load-file "~/.emacs.d/term.el")
 
 (load-file "~/.emacs.d/arduino-mode.el")
 
