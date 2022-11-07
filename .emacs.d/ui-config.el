@@ -7,6 +7,7 @@
 
 (set-face-attribute 'default nil :height 130)
 
+(setq-default completions-format 'vertical)
 
 (custom-set-variables
   '(ansi-color-names-vector
