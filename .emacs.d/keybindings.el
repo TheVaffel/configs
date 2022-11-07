@@ -12,7 +12,7 @@
 		  (setq this-command 'previous-line)
 		  (previous-line 10)))
 	    ("C-n" . next-line)
-	    ("M-n" . 
+	    ("M-n" .
 		(lambda ()
 		  (interactive)
 		  (setq this-command 'next-line)
@@ -25,7 +25,9 @@
 	    ("C-j" . forward-char)
 	    ("M-j" . forward-word)
             ("C-f" . hcon-toggle-fullscreen)
-            ("S-C-s" . project-find-file)) ;; Project-wide file finding
+            ("S-C-s" . project-find-file) ;; Project-wide file finding
+            ("C-." . quoted-insert)
+            ("M-c" . multi-term))
 
 
 (global-set-key (kbd "C-q") (lookup-key global-map (kbd "C-x")))

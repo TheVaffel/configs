@@ -10,11 +10,7 @@
 
 ;; Use MELPA package repository
 (require 'package)
-(add-to-list
- 'package-archives
- '("melpa" . "http://stable.melpa.org/packages/")
- t)
-
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 
 ;; Kill scratch buffer
 (kill-buffer "*scratch*")
