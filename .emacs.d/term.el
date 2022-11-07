@@ -8,12 +8,12 @@
   (interactive)
   (if (get 'custom-toggle-line-mode 'state)
       (progn
-        (term-line-mode)
+        (term-char-mode)
         (message "Toggled line mode off")
         (put 'custom-toggle-line-mode 'state nil)
         )
     (progn
-      (term-char-mode)
+      (term-line-mode)
       (message "Toggled line mode on")
       (put 'custom-toggle-line-mode 'state t)
       )))
@@ -25,18 +25,24 @@
               (define-key term-raw-map binding
                           (lookup-key (current-global-map) binding)))
 
+            (defun expose-local-binding-in-term (binding)
+              (define-key term-raw-map binding
+                          (lookup-key (current-local-map) binding)))
+
             (expose-global-binding-in-term (kbd "C-q"))
             (expose-global-binding-in-term (kbd "M-x"))
             (expose-global-binding-in-term (kbd "M-1"))
-
-            (define-key term-raw-map (kbd "C-n") 'scroll-down)
-            (define-key term-raw-map (kbd "C-t") 'scroll-up)
 
             (expose-global-binding-in-term (kbd "C-n"))
             (expose-global-binding-in-term (kbd "C-t"))
 
             (define-key term-raw-map (kbd "C-c") 'term-interrupt-subjob)
 
-            (define-key term-raw-map (kbd "M-.") 'multi-term-prev)
-            (define-key term-raw-map (kbd "M-p") 'multi-term-next)
+            (local-set-key (kbd "C-,") 'toggle-term-line-mode)
+            (local-set-key (kbd "M-.") 'multi-term-prev)
+            (local-set-key (kbd "M-p") 'multi-term-next)
+
+            (expose-local-binding-in-term (kbd "C-,"))
+            (expose-local-binding-in-term (kbd "M-."))
+            (expose-local-binding-in-term (kbd "M-p"))
             ))

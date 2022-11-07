@@ -9,9 +9,9 @@
   ;; install it separately via package-install
   ;; `M-x package-install [ret] company`
   (company-mode +1)
-  (bind-keys* ("M-p" . tide-references))
-  (bind-keys* ("M-r" . tide-rename-symbol))
-  (bind-keys* ("M-f" . tide-rename-file))
+  (local-set-key "M-p" 'tide-references)
+  (local-set-key "M-r" 'tide-rename-symbol)
+  (local-set-key "M-f" 'tide-rename-file)
   (setq-default typescript-indent-level 2)
   (setq tide-server-max-response-length 102400000)
   ;; aligns annotation to the right hand side
