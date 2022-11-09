@@ -1,6 +1,8 @@
 
 (package-initialize)
 
+(load-file "~/.emacs.d/environment.el")
+
 (load-file "~/.emacs.d/misc.el")
 
 ;; Call keybindings early so that we can use them even if the rest goes wrong
@@ -15,6 +17,7 @@
 (load-file "~/.emacs.d/glsl.el")
 (load-file "~/.emacs.d/wgsl-mode.el")
 (load-file "~/.emacs.d/term.el")
+(load-file "~/.emacs.d/org.el")
 
 (load-file "~/.emacs.d/arduino-mode.el")
 
