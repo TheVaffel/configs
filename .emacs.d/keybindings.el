@@ -27,7 +27,10 @@
             ("C-f" . hcon-toggle-fullscreen)
             ("S-C-s" . project-find-file) ;; Project-wide file finding
             ("C-." . quoted-insert)
-            ("M-c" . multi-term))
+            ("M-c" . multi-term)
+            ("M-l" . multi-term-next)
+            ("M-/" . multi-term-prev)
+            ("M-m" . ffap))
 
 
 (global-set-key (kbd "C-q") (lookup-key global-map (kbd "C-x")))
