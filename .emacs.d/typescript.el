@@ -9,9 +9,9 @@
   ;; install it separately via package-install
   ;; `M-x package-install [ret] company`
   (company-mode +1)
-  (local-set-key "M-p" 'tide-references)
-  (local-set-key "M-r" 'tide-rename-symbol)
-  (local-set-key "M-f" 'tide-rename-file)
+  (local-set-key (kbd "M-p") 'tide-references)
+  (local-set-key (kbd "M-r") 'tide-rename-symbol)
+  (local-set-key (kbd "M-f") 'tide-rename-file)
   (setq-default typescript-indent-level 2)
   (setq tide-server-max-response-length 102400000)
   ;; aligns annotation to the right hand side
@@ -24,6 +24,8 @@
 
 ;; formats the buffer before saving
 ;; (add-hook 'before-save-hook 'tide-format-before-save)
+
+(setq tide-node-executable "/home/haakon/.nvm/versions/node/v16.15.1/bin/node")
 
 (require 'web-mode)
 (add-to-list 'auto-mode-alist '("\\.tsx\\'" . web-mode))
