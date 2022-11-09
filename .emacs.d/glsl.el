@@ -7,4 +7,6 @@
 
 (add-hook 'glsl-mode-hook (lambda ()
                             (setq auto-save-default nil)
-                            (setq create-lockfiles nil)))
+                            (setq create-lockfiles nil)
+                            (indent-tabs-mode t)
+                            (setq c-basic-offset 8)))
