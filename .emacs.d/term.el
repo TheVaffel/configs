@@ -14,6 +14,7 @@
         )
     (progn
       (term-line-mode)
+      (read-only-mode t)
       (message "Toggled line mode on")
       (put 'custom-toggle-line-mode 'state t)
       )))
