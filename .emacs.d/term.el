@@ -40,10 +40,6 @@
             (define-key term-raw-map (kbd "C-c") 'term-interrupt-subjob)
 
             (local-set-key (kbd "C-,") 'toggle-term-line-mode)
-            (local-set-key (kbd "M-.") 'multi-term-prev)
-            (local-set-key (kbd "M-p") 'multi-term-next)
 
             (expose-local-binding-in-term (kbd "C-,"))
-            (expose-local-binding-in-term (kbd "M-."))
-            (expose-local-binding-in-term (kbd "M-p"))
             ))
