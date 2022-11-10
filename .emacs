@@ -19,6 +19,7 @@
 (load-file "~/.emacs.d/wgsl-mode.el")
 (load-file "~/.emacs.d/term.el")
 (load-file "~/.emacs.d/org.el")
+(load-file "~/.emacs.d/lsp-setup.el")
 
 ;; Call again to re-override bindings from different modes
 (load-file "~/.emacs.d/keybindings.el")
