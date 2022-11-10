@@ -4,7 +4,7 @@
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
 
-(set-face-attribute 'default nil :height 130)
+(set-face-attribute 'default (selected-frame) :height 130 :family "hack")
 
 (setq-default completions-format 'vertical)
 
