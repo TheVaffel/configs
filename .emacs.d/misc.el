@@ -8,12 +8,8 @@
 ;; Disable tabs
 (setq-default indent-tabs-mode nil)
 
-;; Use MELPA package repository
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
-
-;; Kill scratch buffer
-(kill-buffer "*scratch*")
 
 ;; Prevent automatic splitting of windows
 (setq split-height-threshold nil
