@@ -11,6 +11,7 @@
 (load-file "~/.emacs.d/ui-config.el")
 
 (load-file "~/.emacs.d/shader-modes.el")
+(load-file "~/.emacs.d/c.el")
 (load-file "~/.emacs.d/cplusplus.el")
 (load-file "~/.emacs.d/typescript.el")
 (load-file "~/.emacs.d/csharp.el")
