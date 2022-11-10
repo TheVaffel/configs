@@ -19,3 +19,5 @@
 (global-auto-revert-mode t)
 
 (server-start)
+(pinentry-start)
+(shell-command "gpg-connect-agent /bye")
