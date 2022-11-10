@@ -1,13 +1,13 @@
 
-
 ;; Custom C++ stuff
 
 (require 'lsp)
-(add-hook 'c++-mode-hook 'lsp)
 
+(setq lsp-clients-clangd-args '("-background-index"))
 
-(with-eval-after-load 'lsp-mode
-  (add-hook 'lsp-mode-hook #'lsp-enable-which-key-integration))
-
-(setq c-default-style "linux"
-      c-basic-offset 4)
+(add-hook 'c++-mode-hook (lambda () ""
+                           (lsp)
+                           (with-eval-after-load 'lsp-mode
+                             (add-hook 'lsp-mode-hook #'lsp-enable-which-key-integration))
+                           (setq c-default-style "linux"
+                                 c-basic-offset 4)))
