@@ -38,7 +38,8 @@
  '(inhibit-startup-screen t)
  '(org-agenda-files nil t)
  '(package-selected-packages
-   '(slack emojify org-jira multi-term yaml-mode purescript-mode citeproc-org haskell-mode rustic rust-mode magit-libgit rainbow-delimiters helm-ag fzf magit mood-line company tide web-mode csharp-mode bind-key)))
+   '(multi-term yaml-mode purescript-mode citeproc-org haskell-mode rustic rust-mode magit-libgit rainbow-delimiters helm-ag fzf magit mood-line company tide web-mode csharp-mode bind-key gnu-elpa-keyring-update lsp-mode meson-mode haskell-emacs wc-mode arduino-mode pinentry mu4e-views offlineimap))
+ '(send-mail-function 'mailclient-send-it))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
