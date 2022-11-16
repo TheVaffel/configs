@@ -19,8 +19,6 @@
 (load-file "~/.emacs.d/term.el")
 (load-file "~/.emacs.d/org.el")
 
-(load-file "~/.emacs.d/arduino-mode.el")
-
 ;; Call again to re-override bindings from different modes
 (load-file "~/.emacs.d/keybindings.el")
 (custom-set-variables
