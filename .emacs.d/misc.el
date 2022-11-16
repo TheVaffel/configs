@@ -21,3 +21,5 @@
 
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 (global-auto-revert-mode t)
+
+(server-start)
