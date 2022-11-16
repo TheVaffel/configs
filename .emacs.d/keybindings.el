@@ -28,9 +28,13 @@
             ("S-C-s" . project-find-file) ;; Project-wide file finding
             ("C-." . quoted-insert)
             ("M-c" . multi-term)
-            ("M-l" . multi-term-next)
-            ("M-/" . multi-term-prev)
-            ("M-m" . ffap))
-
+            ("M-/" . multi-term-next)
+            ("M-l" . multi-term-prev)
+            ("M-m" . ffap)
+            ("C-q C-n" . (lambda ()
+                           (interactive)
+                           (save-buffer)
+                           (server-edit)
+                           )))
 
 (global-set-key (kbd "C-q") (lookup-key global-map (kbd "C-x")))
