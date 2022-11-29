@@ -18,7 +18,8 @@
 
 
 (setq org-log-into-drawer "LOGBOOK")
-(setq org-startup-truncated nil)
+(setq org-startup-truncated nil) ;; Enable line wrapping
+(setq org-startup-folded t) ;; Collapse all headers on file open
 
 (setq jiralib-url "https://cognitedata.atlassian.net")
 
