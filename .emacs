@@ -1,8 +1,6 @@
 
 (package-initialize)
 
-(load-file "~/.emacs.d/environment.el")
-
 (load-file "~/.emacs.d/misc.el")
 
 ;; Call keybindings early so that we can use them even if the rest goes wrong
