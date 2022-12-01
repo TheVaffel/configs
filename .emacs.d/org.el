@@ -27,7 +27,9 @@
 
 (defun insert-heading-with-timestamp ()
   (interactive)
-  (org-insert-heading-after-current)
+  (org-insert-heading)
+  (newline)
+  (forward-line -1)
   (org-todo)
   (end-of-line))
 
