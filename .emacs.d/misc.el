@@ -18,6 +18,8 @@
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 (global-auto-revert-mode t)
 
+(add-to-list 'auto-mode-alist '("\\.mdx\\'" . markdown-mode))
+
 (server-start)
 (pinentry-start)
 (shell-command "gpg-connect-agent /bye")

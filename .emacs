@@ -18,8 +18,8 @@
 (load-file "~/.emacs.d/term.el")
 (load-file "~/.emacs.d/org.el")
 (load-file "~/.emacs.d/lsp-setup.el")
-
 (load-file "~/.emacs.d/mail.el")
+(load-file "~/.emacs.d/purescript.el")
 
 ;; Call again to re-override bindings from different modes
 (load-file "~/.emacs.d/keybindings.el")
@@ -34,7 +34,7 @@
  '(dap-netcore-download-url
    "https://github.com/Samsung/netcoredbg/releases/download/1.2.0-825/netcoredbg-linux-amd64_fixed.tar.gz")
  '(inhibit-startup-screen t)
- '(org-agenda-files nil t)
+ '(org-agenda-files nil)
  '(package-selected-packages
    '(multi-term yaml-mode purescript-mode citeproc-org haskell-mode rustic rust-mode magit-libgit rainbow-delimiters helm-ag fzf magit mood-line company tide web-mode csharp-mode bind-key gnu-elpa-keyring-update lsp-mode meson-mode haskell-emacs wc-mode arduino-mode pinentry mu4e-views offlineimap))
  '(send-mail-function 'mailclient-send-it))

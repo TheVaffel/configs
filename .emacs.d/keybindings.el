@@ -28,6 +28,8 @@
             ("S-C-s" . project-find-file) ;; Project-wide file finding
             ("C-." . quoted-insert)
             ("M-c" . multi-term)
+            ("S-C-c" . make-frame)
+            ("C-q S-C-c" . delete-frame)
             ("M-/" . multi-term-next)
             ("M-l" . multi-term-prev)
             ("M-m" . ffap)
