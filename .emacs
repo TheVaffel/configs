@@ -1,6 +1,4 @@
 
-(package-initialize)
-
 (load-file "~/.emacs.d/misc.el")
 
 ;; Call keybindings early so that we can use them even if the rest goes wrong
@@ -10,16 +8,19 @@
 
 (load-file "~/.emacs.d/shader-modes.el")
 (load-file "~/.emacs.d/c.el")
-(load-file "~/.emacs.d/cplusplus.el")
-(load-file "~/.emacs.d/typescript.el")
-(load-file "~/.emacs.d/csharp.el")
+;; (load-file "~/.emacs.d/cplusplus.el")
+;; (load-file "~/.emacs.d/typescript.el")
+;; (load-file "~/.emacs.d/csharp.el")
+(load-file "~/.emacs.d/environment.el")
 (load-file "~/.emacs.d/glsl.el")
 (load-file "~/.emacs.d/wgsl-mode.el")
 (load-file "~/.emacs.d/term.el")
 (load-file "~/.emacs.d/org.el")
+(load-file "~/.emacs.d/rust.el")
+(load-file "~/.emacs.d/haskell.el")
 (load-file "~/.emacs.d/lsp-setup.el")
-(load-file "~/.emacs.d/mail.el")
-(load-file "~/.emacs.d/purescript.el")
+;; (load-file "~/.emacs.d/mail.el")
+;; (load-file "~/.emacs.d/purescript.el")
 
 ;; Call again to re-override bindings from different modes
 (load-file "~/.emacs.d/keybindings.el")
@@ -36,7 +37,7 @@
  '(inhibit-startup-screen t)
  '(org-agenda-files nil)
  '(package-selected-packages
-   '(multi-term yaml-mode purescript-mode citeproc-org haskell-mode rustic rust-mode magit-libgit rainbow-delimiters helm-ag fzf magit mood-line company tide web-mode csharp-mode bind-key gnu-elpa-keyring-update lsp-mode meson-mode haskell-emacs wc-mode arduino-mode pinentry mu4e-views offlineimap))
+   '(flycheck compat multi-term yaml-mode purescript-mode citeproc-org magit-libgit rainbow-delimiters helm-ag fzf mood-line tide gnu-elpa-keyring-update meson-mode haskell-emacs wc-mode arduino-mode pinentry mu4e-views offlineimap))
  '(send-mail-function 'mailclient-send-it))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -44,3 +45,10 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+
+(require 'package)
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+;; Comment/uncomment this line to enable MELPA Stable if desired.  See `package-archive-priorities`
+;; and `package-pinned-packages`. Most users will not need or want to do this.
+;;(add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/") t)
+(package-initialize)
