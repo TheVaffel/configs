@@ -16,3 +16,5 @@
 
 (require 'rainbow-delimiters)
 (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
+
+(set-frame-parameter (selected-frame) 'alpha-background 80)
