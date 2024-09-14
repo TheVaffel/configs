@@ -5,6 +5,7 @@
                              (bind-keys*
                               ("M-." . lsp-find-definition)
                               ("M-p" . lsp-find-references)
+                              ("M-r" . lsp-rename)
                               )
                              (setq c-basic-offset 4))))
 
