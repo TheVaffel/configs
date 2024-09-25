@@ -16,3 +16,10 @@
 
 (require 'rainbow-delimiters)
 (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
+
+;; Only available with experimental patch
+(set-frame-parameter (selected-frame) 'alpha-background 80)
+
+(add-hook 'after-make-frame-functions (lambda (frame)
+                                        (set-frame-parameter frame 'alpha-background 80)
+                                        (set-face-attribute 'default (selected-frame) :height 130 :family "hack")))
