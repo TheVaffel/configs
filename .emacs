@@ -1,7 +1,7 @@
 (package-initialize)
 
 (require 'use-package)
-(require 'quelpa-use-package)
+
 
 (load-file "~/.emacs.d/welcome.el")
 (load-file "~/.emacs.d/misc.el")
@@ -46,9 +46,9 @@
  '(dap-netcore-download-url
    "https://github.com/Samsung/netcoredbg/releases/download/1.2.0-825/netcoredbg-linux-amd64_fixed.tar.gz")
  '(inhibit-startup-screen t)
- '(org-agenda-files nil)
+ '(org-agenda-files nil t)
  '(package-selected-packages
-   '(flycheck compat multi-term yaml-mode purescript-mode citeproc-org magit-libgit rainbow-delimiters helm-ag fzf mood-line tide gnu-elpa-keyring-update meson-mode haskell-emacs wc-mode arduino-mode pinentry mu4e-views offlineimap))
+   '(magit flycheck compat multi-term yaml-mode purescript-mode citeproc-org magit-libgit rainbow-delimiters helm-ag fzf mood-line tide gnu-elpa-keyring-update meson-mode haskell-emacs wc-mode arduino-mode pinentry mu4e-views offlineimap))
  '(send-mail-function 'mailclient-send-it))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
