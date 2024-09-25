@@ -22,20 +22,14 @@
   ;; (add-hook 'after-save-hook 'eslint-fix nil t)
   )
 
-;; formats the buffer before saving
-;; (add-hook 'before-save-hook 'tide-format-before-save)
-
 (setq tide-node-executable "/home/haakon/.nvm/versions/node/v16.15.1/bin/node")
 
-(require 'web-mode)
-(add-to-list 'auto-mode-alist '("\\.tsx\\'" . web-mode))
-(add-hook 'web-mode-hook
-          (lambda ()
-            (setq web-mode-markup-indent-offset 2)
-            (setq web-mode-code-indent-offset 2)
-            (when (string-equal "tsx" (file-name-extension buffer-file-name))
-              (setup-tide-mode))))
+(require 'prettier)
 
 (add-hook 'typescript-mode-hook #'setup-tide-mode)
+(add-hook 'typescript-mode-hook 'prettier-mode)
+
+;; (add-hook 'tsx-ts-mode-hook #'setup-tide-mode)
+;; (add-hook 'tsx-ts-mode-hook 'prettier-mode)
 
 (setq js-indent-level 2)
