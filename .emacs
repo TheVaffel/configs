@@ -1,6 +1,9 @@
-
 (package-initialize)
 
+(require 'use-package)
+(require 'quelpa-use-package)
+
+(load-file "~/.emacs.d/welcome.el")
 (load-file "~/.emacs.d/misc.el")
 
 ;; Call keybindings early so that we can use them even if the rest goes wrong
@@ -16,13 +19,17 @@
 (load-file "~/.emacs.d/glsl.el")
 (load-file "~/.emacs.d/wgsl-mode.el")
 (load-file "~/.emacs.d/term.el")
-(load-file "~/.emacs.d/org.el")
 (load-file "~/.emacs.d/lsp-setup.el")
-(load-file "~/.emacs.d/mail.el")
+(load-file "~/.emacs.d/environment.el")
+(load-file "~/.emacs.d/git.el")
+;; (load-file "~/.emacs.d/copilot.el")
+;; (load-file "~/.emacs.d/mail.el")
+(load-file "~/.emacs.d/org.el")
 (load-file "~/.emacs.d/purescript.el")
 
-;; Call again to re-override bindings from different modes
-(load-file "~/.emacs.d/keybindings.el")
+;; (load-file "~/.emacs.d/extern/isearch+.el")
+;; (load-file "~/.emacs.d/extern/isearch-prop.el")
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -36,7 +43,7 @@
  '(inhibit-startup-screen t)
  '(org-agenda-files nil)
  '(package-selected-packages
-   '(multi-term yaml-mode purescript-mode citeproc-org haskell-mode rustic rust-mode magit-libgit rainbow-delimiters helm-ag fzf magit mood-line company tide web-mode csharp-mode bind-key gnu-elpa-keyring-update lsp-mode meson-mode haskell-emacs wc-mode arduino-mode pinentry mu4e-views offlineimap))
+   '(zones transient-cycles gh tide quelpa-use-package multi-term citeproc-org magit-libgit rainbow-delimiters helm-ag gnu-elpa-keyring-update meson-mode haskell-emacs wc-mode pinentry mu4e-views offlineimap))
  '(send-mail-function 'mailclient-send-it))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -44,3 +51,6 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+
+;; Call again to re-override bindings from different modes
+(load-file "~/.emacs.d/keybindings.el")
