@@ -1,31 +1,3 @@
-(defun is-url (str)
-  (string-match "https?://github\\.com/[^/]+/[^/]+/pull/[0-9]+" str)
-  (match-string 0))
-
-(defun hcon-insert-github-pr-title-at-point ()
-  "Parse the URL at point and, if it is a GitHub pull request link,
-fetch its title with the `gh' CLI and insert it right after the URL."
-  (interactive)
-  (unless (executable-find "gh")
-    (user-error "The `gh' CLI is not installed or not on PATH"))
-  (let ((url (thing-at-point 'url t))
-        (bounds (bounds-of-thing-at-point 'url)))
-    (unless url
-      (user-error "No URL found at point"))
-    (unless (is-url url)
-      (user-error "URL at point is not a GitHub pull request: %s" url))
-    (let ((title (string-trim
-                  (shell-command-to-string
-                   (format "gh pr view %s --json title -q .title"
-                           (shell-quote-argument url))))))
-      (when (string-empty-p title)
-        (user-error "Could not fetch PR title for %s" url))
-      (save-excursion
-        (goto-char (car bounds))
-        (insert (format "%s - " title))))))
-
-
-;; (hcon-get-pr-status "https://github.com/cognitedata/reveal/pull/5704")
 
 (defun get-github-pr-urls ()
   "Collect GitHub PR URLs starting from the line at point, removing
