@@ -36,7 +36,7 @@ the URL was found on, in the order encountered."
 (defconst github-username "haakonflatval-cognite")
 (defconst review-author-exclusion (format "\"%s\", \"gemini-code-assist\"" github-username))
 
-(defconst excluded-review-authors '("gemini-code-assist"))
+(defconst excluded-review-authors "\"gemini-code-assist\"")
 
 (defun get-last-interesting-review-time (author review-authors-and-dates)
   (let* ((parsedJson (json-parse-string review-authors-and-dates))
@@ -46,6 +46,7 @@ the URL was found on, in the order encountered."
          )
     (date-to-time last-relevant-review-date)))
 
+(defconst jq-filter-last-review-or-commit-author (format "([[.reviews | .[] | { date: .submittedAt, login: .author.login }],[.commits | .[] | {date: .authoredDate, login: .authors | first | .login } ]] | add | [.[] |select(.login | IN(%s) | not)] | sort_by(.date) | last | .login)" excluded-review-authors))
 
 (defun get-github-pr-state (url)
   "Fetch the title and state of the GitHub PR at URL using the `gh' CLI.
@@ -55,17 +56,17 @@ Returns an alist with keys `url', `title', and `state'."
   (let* ((stats
           (split-string
            (shell-command-to-string
-            (format "gh pr view %s --json title,state,author,reviews,commits -q '.title,.state,.author.login,[.commits | last | .authoredDate][], [.reviews | .[] | { date: .submittedAt, author: .author.login }],[.labels | select(.name == \"waiting-for-risk-review\")]'"
+            (format "gh pr view %s --json title,state,author,reviews,commits -q '.title,.state,.author.login,%s,([.labels | select(.name == \"waiting-for-risk-review\")] | first)'"
                     (shell-quote-argument url)
+                    jq-filter-last-review-or-commit-author
                     ))
            "\n"))
          (data stats)
          (title (nth 0 data))
          (state (nth 1 data))
          (author (nth 2 data))
-         (last-commit-time (nth 3 data))
-         (review-authors-and-dates (nth 4 data))
-         (waiting-for-risk-review-label (nth 5 data))
+         (last-relevant-person (nth 3 data))
+         (waiting-for-risk-review-label (nth 4 data))
          )
     (unless data
       (user-error "Could not fetch PR state for %s" url))
@@ -73,9 +74,8 @@ Returns an alist with keys `url', `title', and `state'."
           (cons 'title title)
           (cons 'state state)
           (cons 'author author)
-          (cons 'last-commit-time (date-to-time last-commit-time))
-          (cons 'last-relevant-review-time (get-last-interesting-review-time author review-authors-and-dates))
-          (cons 'waiting-for-risk-review-label waiting-for-risk-review-label))))
+          (cons 'last-relevant-person last-relevant-person)
+          (cons 'waiting-for-risk-review-label (not (equal "" waiting-for-risk-review-label))))))
 
 (defun get-github-pr-states (urls)
   "Fetch title and state for each GitHub PR URL in URLS.
@@ -93,13 +93,8 @@ each with keys `url', `title', and `state'."
 
 
 
-(defun notif (author last-commit-time last-review-time waiting-for-risk-review-label)
-  (format "%s -- %s, %s %s" last-commit-time last-review-time author github-username)
-  (if (or (and (time-less-p last-commit-time last-review-time)
-               (and (equal author github-username)
-                    (not waiting-for-risk-review-label)))
-          (and (time-less-p last-review-time last-commit-time)
-               (not (equal author github-username))))  "⚠️" ""))
+(defun notif (last-relevant-person waiting-for-risk-review-label)
+  (if (or waiting-for-risk-review-label (equal last-relevant-person github-username)) "" "⚠️"))
 
 
 (defun refresh-github-prs ()
@@ -120,9 +115,7 @@ open PRs sorted to the top."
     (dolist (pr sorted)
       (insert
        (format "%s %s %s  -  %s\n"
-               (notif (alist-get 'author pr)
-                      (alist-get 'last-commit-time pr)
-                      (alist-get 'last-relevant-review-time pr)
+               (notif (alist-get 'last-relevant-person pr)
                       (alist-get 'waiting-for-risk-review-label pr))
                (state-icon (alist-get 'state pr))
                (alist-get 'title pr)
