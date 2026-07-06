@@ -35,3 +35,15 @@ This command does not push erased text to kill-ring."
       (message "Saved window state and enabled full screen")
       (put 'hcon-toggle-fullscreen 'state t)
       )))
+
+
+(defun hcon-put-filename-on-clipboard ()
+  "Put the current file name on the clipboard"
+  (interactive)
+  (let (( path (file-relative-name
+                (if buffer-file-name buffer-file-name default-directory)
+                (project-root (project-current)))))
+        (with-temp-buffer
+          (insert path)
+          (clipboard-kill-region (point-min) (point-max)))
+        (message path)))

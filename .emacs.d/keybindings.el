@@ -1,4 +1,5 @@
 (load-file "~/.emacs.d/utils.el")
+(load-file "~/.emacs.d/github.el")
 
 ; Custom key bindings
 
@@ -25,7 +26,8 @@
 	    ("C-j" . forward-char)
 	    ("M-j" . forward-word)
             ("C-f" . hcon-toggle-fullscreen)
-            ("S-C-s" . project-find-file) ;; Project-wide file finding
+            ("M-f" . hcon-put-filename-on-clipboard)
+            ("S-C-S" . project-find-file) ;; Project-wide file finding
             ("C-." . quoted-insert)
             ("M-c" . multi-term)
             ("S-C-c" . make-frame)
@@ -33,6 +35,7 @@
             ("M-/" . multi-term-next)
             ("M-l" . multi-term-prev)
             ("M-m" . ffap)
+            ("M-g M-c" . refresh-github-prs)
             ("C-q C-n" . (lambda ()
                            (interactive)
                            (save-buffer)
