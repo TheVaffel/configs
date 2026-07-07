@@ -16,14 +16,14 @@ the URL was found on, in the order encountered."
         (while t
           (let ((line (buffer-substring-no-properties
                        (line-beginning-position) (line-end-position))))
+            (unless (or (string-match-p "\\`[ \t]*\\'" line) (string-match "https?://github\\.com/[^/]+/[^/]+/pull/[0-9]+" line))
+              (throw 'done nil))
+            (progn
+              (push (cons (line-beginning-position)
+                          (min (point-max) (1+ (line-end-position))))
+                    line-bounds))
             (if (string-match "https?://github\\.com/[^/]+/[^/]+/pull/[0-9]+" line)
-                (progn
-                  (push (cons (match-string 0 line) line) urls)
-                  (push (cons (line-beginning-position)
-                              (min (point-max) (1+ (line-end-position))))
-                        line-bounds))
-              (unless (string-match-p "\\`[ \t]*\\'" line)
-                (throw 'done nil))))
+              (push (cons (match-string 0 line) line) urls)) ())
           (if (eobp)
               (throw 'done nil)
             (forward-line 1))))
@@ -93,8 +93,10 @@ each with keys `url', `title', and `state'."
 
 
 
-(defun notif (last-relevant-person waiting-for-risk-review-label)
-  (if (or waiting-for-risk-review-label (equal last-relevant-person github-username)) "" "⚠️"))
+(defun notif (last-relevant-person waiting-for-risk-review-label state)
+  (if (or waiting-for-risk-review-label
+          (or (equal last-relevant-person github-username)
+              (equal state "MERGED"))) "" "⚠️"))
 
 
 (defun refresh-github-prs ()
@@ -114,9 +116,10 @@ open PRs sorted to the top."
                               (not (equal (alist-get 'state b) "OPEN")))))))
     (dolist (pr sorted)
       (insert
-       (format "%s %s %s  -  %s\n"
+       (format "%s %s %s  -  %s\n\n"
                (notif (alist-get 'last-relevant-person pr)
-                      (alist-get 'waiting-for-risk-review-label pr))
+                      (alist-get 'waiting-for-risk-review-label pr)
+                      (alist-get 'state pr))
                (state-icon (alist-get 'state pr))
                (alist-get 'title pr)
                (alist-get 'url pr))))))
